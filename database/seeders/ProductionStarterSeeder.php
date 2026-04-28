@@ -11,6 +11,7 @@ use App\Services\AssignmentService;
 use App\Services\SchedulingService;
 use App\Services\WbsBuilderService;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ProductionStarterSeeder extends Seeder
@@ -421,8 +422,7 @@ class ProductionStarterSeeder extends Seeder
             );
         }
 
-        $project->assignments()->delete();
-        $project->wbsItems()->delete();
+        $this->purgeProjectGraph($project);
 
         /** @var WbsBuilderService $wbsBuilder */
         $wbsBuilder = app(WbsBuilderService::class);
@@ -482,5 +482,34 @@ class ProductionStarterSeeder extends Seeder
         }
 
         $scheduling->recalculateProject($project->fresh());
+    }
+
+    private function purgeProjectGraph(Project $project): void
+    {
+        $assignmentIds = DB::table('assignments')
+            ->where('project_id', $project->id)
+            ->pluck('id');
+
+        $scheduleIds = DB::table('schedules')
+            ->where('project_id', $project->id)
+            ->pluck('id');
+
+        DB::table('notifications')->where('project_id', $project->id)->delete();
+        DB::table('exports')->where('project_id', $project->id)->delete();
+
+        if ($scheduleIds->isNotEmpty()) {
+            DB::table('schedule_daily_allocations')->whereIn('schedule_id', $scheduleIds)->delete();
+        }
+
+        if ($assignmentIds->isNotEmpty()) {
+            DB::table('progress_logs')->whereIn('assignment_id', $assignmentIds)->delete();
+            DB::table('assignment_dependencies')->whereIn('assignment_id', $assignmentIds)->delete();
+            DB::table('assignment_dependencies')->whereIn('depends_on_assignment_id', $assignmentIds)->delete();
+            DB::table('assignment_leaves')->whereIn('assignment_id', $assignmentIds)->delete();
+            DB::table('schedules')->whereIn('assignment_id', $assignmentIds)->delete();
+            DB::table('assignments')->whereIn('id', $assignmentIds)->delete();
+        }
+
+        DB::table('project_wbs_items')->where('project_id', $project->id)->delete();
     }
 }
