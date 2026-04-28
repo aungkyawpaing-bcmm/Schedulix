@@ -27,7 +27,8 @@ RUN apt-get update \
         unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j"$(nproc)" gd intl pdo_pgsql pgsql zip \
-    && a2enmod headers rewrite \
+    && a2dismod mpm_event \
+    && a2enmod mpm_prefork headers rewrite \
     && sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
     && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
     && rm -rf /var/lib/apt/lists/*
