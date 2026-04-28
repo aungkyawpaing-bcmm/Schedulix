@@ -16,6 +16,7 @@ ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+        gettext-base \
         git \
         libfreetype6-dev \
         libicu-dev \
@@ -39,11 +40,13 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 COPY --from=assets /app/public/build ./public/build
+COPY docker/apache-entrypoint.sh /usr/local/bin/apache-entrypoint.sh
 
 RUN mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
     && chown -R www-data:www-data bootstrap/cache storage \
-    && chmod -R ug+rwx bootstrap/cache storage
+    && chmod -R ug+rwx bootstrap/cache storage \
+    && chmod +x /usr/local/bin/apache-entrypoint.sh
 
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+CMD ["/usr/local/bin/apache-entrypoint.sh"]
