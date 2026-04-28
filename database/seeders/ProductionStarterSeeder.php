@@ -32,7 +32,7 @@ class ProductionStarterSeeder extends Seeder
                 'overview' => 'Modernize the customer-facing portal with role-based access, dashboard widgets, and document workflows.',
                 'objective' => 'Deliver a cleaner user experience, simpler support workflows, and better reporting visibility.',
                 'start_offset' => -10,
-                'end_offset' => 55,
+                'end_offset' => 120,
                 'wbs' => [
                     [
                         'phase' => 'Discovery & Design',
@@ -93,8 +93,8 @@ class ProductionStarterSeeder extends Seeder
                 'name' => 'Employee Mobile Support App',
                 'overview' => 'Build a lightweight mobile-first support application for internal requests and leave submissions.',
                 'objective' => 'Reduce manual coordination and provide self-service access to staff operations.',
-                'start_offset' => -5,
-                'end_offset' => 70,
+                'start_offset' => 25,
+                'end_offset' => 180,
                 'wbs' => [
                     [
                         'phase' => 'Planning',
@@ -165,8 +165,8 @@ class ProductionStarterSeeder extends Seeder
                 'name' => 'Operations Monitoring Dashboard',
                 'overview' => 'Create a central dashboard for service health, alert tracking, and weekly operational reporting.',
                 'objective' => 'Improve operational visibility and shorten reaction time for support incidents.',
-                'start_offset' => 0,
-                'end_offset' => 45,
+                'start_offset' => 60,
+                'end_offset' => 240,
                 'wbs' => [
                     [
                         'phase' => 'Analysis',
