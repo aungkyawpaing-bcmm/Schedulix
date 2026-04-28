@@ -1,0 +1,43 @@
+<?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54 = $attributes; } ?>
+<?php $component = App\View\Components\AppLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('app-layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+     <?php $__env->slot('header', null, []); ?> 
+        <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+                <p class="text-sm uppercase tracking-[0.35em] text-sky-200/70"><?php echo e(__('ui.assignments.title')); ?></p>
+                <h2 class="mt-2 text-3xl font-semibold text-white"><?php echo e($editingAssignment ? __('ui.assignments.edit_title') : __('ui.assignments.create_title')); ?></h2>
+                <p class="mt-2 text-sm text-slate-300"><?php echo e($project->name); ?></p>
+            </div>
+            <a href="<?php echo e(route('assignments.index', $project)); ?>" class="rounded-2xl border border-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/5">
+                <?php echo e(__('ui.assignments.back')); ?>
+
+            </a>
+        </div>
+     <?php $__env->endSlot(); ?>
+
+    <section class="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-6">
+        <h3 class="text-lg font-semibold text-white"><?php echo e($editingAssignment ? __('ui.assignments.update_details') : __('ui.assignments.create_details')); ?></h3>
+        <p class="mt-1 text-sm text-slate-400"><?php echo e(__('ui.assignments.form_note')); ?></p>
+
+        <div class="mt-6">
+            <?php echo $__env->make('assignments._form', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        </div>
+    </section>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
+<?php $attributes = $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
+<?php unset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
+<?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
+<?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
+<?php endif; ?>
+<?php /**PATH C:\laragon\www\bcmm-wbs\WBS-Generator\resources\views/assignments/form.blade.php ENDPATH**/ ?>

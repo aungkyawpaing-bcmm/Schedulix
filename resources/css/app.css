@@ -1,0 +1,306 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --schedulix-bg: #ffffff;
+        --schedulix-surface: #ffffff;
+        --schedulix-surface-soft: rgba(255, 255, 255, 0.88);
+        --schedulix-surface-tint: rgba(213, 240, 220, 0.72);
+        --schedulix-mint: #d5f0dc;
+        --schedulix-accent: #85f2a1;
+        --schedulix-accent-strong: #63d986;
+        --schedulix-ink: #183624;
+        --schedulix-muted: #51705d;
+        --schedulix-border: rgba(99, 182, 124, 0.3);
+        --schedulix-shadow: rgba(61, 118, 79, 0.14);
+        --schedulix-highlight: rgba(133, 242, 161, 0.24);
+    }
+
+    body {
+        font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+        background: var(--schedulix-bg);
+        color: var(--schedulix-ink);
+    }
+
+    input,
+    select,
+    textarea {
+        border-color: var(--schedulix-border);
+    }
+}
+
+@layer components {
+    .schedulix-shell-bg {
+        background:
+            radial-gradient(circle at top left, rgba(133, 242, 161, 0.4), transparent 28%),
+            radial-gradient(circle at bottom right, rgba(213, 240, 220, 0.95), transparent 32%),
+            linear-gradient(180deg, #ffffff 0%, #f6fff8 48%, #edf9f0 100%);
+    }
+
+    .schedulix-panel {
+        background: var(--schedulix-surface-soft);
+        border: 1px solid var(--schedulix-border);
+        box-shadow: 0 24px 60px var(--schedulix-shadow);
+        backdrop-filter: blur(16px);
+    }
+
+    .schedulix-panel-strong {
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 255, 249, 0.96));
+        border: 1px solid var(--schedulix-border);
+        box-shadow: 0 24px 60px var(--schedulix-shadow);
+    }
+
+    .schedulix-nav-badge {
+        display: inline-flex;
+        height: 2rem;
+        width: 2rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        background: rgba(133, 242, 161, 0.24);
+        color: var(--schedulix-ink);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+    }
+
+    .schedulix-shell [class*="border-white/10"] {
+        border-color: var(--schedulix-border) !important;
+    }
+
+    .schedulix-shell [class*="bg-white/5"],
+    .schedulix-shell [class*="bg-white/10"],
+    .schedulix-shell [class*="bg-slate-900/40"],
+    .schedulix-shell [class*="bg-slate-900/50"],
+    .schedulix-shell [class*="bg-slate-950/60"],
+    .schedulix-shell [class*="bg-slate-900"],
+    .schedulix-shell [class*="bg-slate-950"] {
+        background: var(--schedulix-surface-soft) !important;
+    }
+
+    .schedulix-shell [class*="text-white"] {
+        color: var(--schedulix-ink) !important;
+    }
+
+    .schedulix-shell [class*="text-slate-200"],
+    .schedulix-shell [class*="text-slate-300"],
+    .schedulix-shell [class*="text-slate-400"],
+    .schedulix-shell [class*="text-slate-500"] {
+        color: var(--schedulix-muted) !important;
+    }
+
+    .schedulix-shell [class*="text-sky-"],
+    .schedulix-shell [class*="text-emerald-"],
+    .schedulix-shell [class*="text-rose-"] {
+        color: var(--schedulix-accent-strong) !important;
+    }
+
+    .schedulix-shell [class*="bg-sky-"],
+    .schedulix-shell [class*="bg-emerald-"] {
+        background: var(--schedulix-accent) !important;
+        color: var(--schedulix-ink) !important;
+    }
+
+    .schedulix-shell [class*="bg-sky-"][class*="text-slate-950"] {
+        color: var(--schedulix-ink) !important;
+    }
+
+    .schedulix-shell [class*="from-sky-"],
+    .schedulix-shell [class*="via-cyan-"],
+    .schedulix-shell [class*="to-emerald-"] {
+        background-image: linear-gradient(135deg, rgba(133, 242, 161, 0.5), rgba(213, 240, 220, 0.92)) !important;
+    }
+
+    .schedulix-shell input,
+    .schedulix-shell select,
+    .schedulix-shell textarea {
+        background: rgba(255, 255, 255, 0.98) !important;
+        color: var(--schedulix-ink) !important;
+        border: 1px solid var(--schedulix-border) !important;
+        box-shadow: none !important;
+    }
+
+    .schedulix-shell input:focus,
+    .schedulix-shell select:focus,
+    .schedulix-shell textarea:focus {
+        border-color: var(--schedulix-accent-strong) !important;
+        box-shadow: 0 0 0 3px rgba(133, 242, 161, 0.18) !important;
+        outline: none;
+    }
+
+    .schedulix-table-wrap {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(237, 249, 240, 0.98));
+        scrollbar-gutter: stable;
+        overflow-y: hidden;
+    }
+
+    .schedulix-table-scrollbar {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        background: rgba(255, 255, 255, 0.92);
+        padding: 0.45rem 0;
+        scrollbar-gutter: stable;
+        overflow-y: hidden;
+    }
+
+    .schedulix-table-scrollbar::-webkit-scrollbar,
+    .schedulix-table-wrap::-webkit-scrollbar {
+        height: 12px;
+    }
+
+    .schedulix-table-scrollbar::-webkit-scrollbar-track,
+    .schedulix-table-wrap::-webkit-scrollbar-track {
+        background: rgba(213, 240, 220, 0.72);
+        border-radius: 9999px;
+    }
+
+    .schedulix-table-scrollbar::-webkit-scrollbar-thumb,
+    .schedulix-table-wrap::-webkit-scrollbar-thumb {
+        background: rgba(99, 217, 134, 0.9);
+        border-radius: 9999px;
+        border: 2px solid rgba(213, 240, 220, 0.72);
+    }
+
+    .schedulix-detail-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        table-layout: fixed;
+    }
+
+    .schedulix-detail-table thead th {
+        background: #effcf2;
+        color: var(--schedulix-ink);
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .schedulix-detail-table td,
+    .schedulix-detail-table th {
+        border-bottom: 1px solid rgba(99, 182, 124, 0.2);
+    }
+
+    .schedulix-detail-table tbody td {
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--schedulix-ink);
+        vertical-align: middle;
+    }
+
+    .schedulix-detail-table .schedulix-row-alt td {
+        background: rgba(213, 240, 220, 0.34);
+    }
+
+    .schedulix-row-complete td {
+        background: #e5e7eb !important;
+        color: #4b5563 !important;
+    }
+
+    .schedulix-sticky {
+        position: sticky;
+        left: var(--schedulix-left);
+        z-index: 12;
+        background: #f7fef9 !important;
+        box-shadow:
+            1px 0 0 rgba(99, 182, 124, 0.18),
+            16px 0 20px -20px rgba(39, 92, 57, 0.3);
+    }
+
+    .schedulix-detail-table thead .schedulix-sticky {
+        z-index: 24;
+        background: #effcf2 !important;
+    }
+
+    .schedulix-detail-table .schedulix-row-alt .schedulix-sticky {
+        background: #edf9f0 !important;
+    }
+
+    .schedulix-sticky-header-divider::after,
+    .schedulix-sticky-cell-divider::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background: rgba(99, 182, 124, 0.22);
+    }
+
+    .schedulix-date-header,
+    .schedulix-date-cell {
+        min-width: 76px;
+        width: 76px;
+        text-align: center;
+    }
+
+    .schedulix-holiday-column {
+        background: #d9d9d9 !important;
+        color: #4b5563 !important;
+    }
+
+    .schedulix-planned-cell {
+        background: #fff2a8 !important;
+    }
+
+    .schedulix-actual-cell {
+        background: #c9f0c9 !important;
+    }
+
+    .schedulix-plan-label {
+        background: rgba(255, 242, 168, 0.55) !important;
+    }
+
+    .schedulix-actual-label {
+        background: rgba(201, 240, 201, 0.55) !important;
+    }
+
+    .schedulix-warning-text {
+        color: #b91c1c !important;
+        font-weight: 700;
+    }
+
+    .schedulix-date-cell input {
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        color: inherit !important;
+    }
+
+    .schedulix-today {
+        background: var(--schedulix-highlight) !important;
+    }
+
+    .schedulix-number-input {
+        min-width: 120px;
+    }
+
+    .schedulix-date-input {
+        min-width: 144px;
+    }
+
+    .schedulix-guest-shell {
+        background:
+            radial-gradient(circle at top, rgba(133, 242, 161, 0.3), transparent 30%),
+            linear-gradient(180deg, #ffffff 0%, #f4fff7 100%);
+    }
+
+    .schedulix-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 1.5rem;
+        background: linear-gradient(135deg, var(--schedulix-accent), var(--schedulix-mint));
+        color: var(--schedulix-ink);
+        font-size: 1.875rem;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        box-shadow: 0 20px 40px var(--schedulix-shadow);
+    }
+}
