@@ -154,7 +154,7 @@
         <form
             method="POST"
             action="{{ route('schedule.progress.store', $project) }}"
-            class="schedulix-panel-strong min-w-0 rounded-3xl p-6"
+            class="schedulix-panel min-w-0 rounded-3xl p-6"
             x-data="scheduleTableScroller()"
             x-init="init()"
         >
@@ -174,16 +174,17 @@
                 <button class="rounded-2xl bg-sky-400 px-5 py-3 text-sm font-semibold text-slate-950">{{ __('ui.schedule.save_progress') }}</button>
             </div>
 
-            <div
-                x-ref="mainScroll"
-                @scroll="syncFromMain"
-                class="schedulix-table-wrap block h-[68vh] w-full max-w-full overflow-x-scroll overflow-y-auto rounded-t-[2rem] border border-white/10 border-b-0"
-            >
-                <table
-                    x-ref="detailTable"
-                    class="schedulix-detail-table text-sm"
-                    style="width: {{ $detailTableWidth }}px; min-width: {{ $detailTableWidth }}px;"
+            <div class="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+                <div
+                    x-ref="mainScroll"
+                    @scroll="syncFromMain"
+                    class="schedulix-table-wrap block h-[62vh] w-full max-w-full overflow-x-scroll overflow-y-auto"
                 >
+                    <table
+                        x-ref="detailTable"
+                        class="schedulix-detail-table text-sm"
+                        style="width: {{ $detailTableWidth }}px; min-width: {{ $detailTableWidth }}px;"
+                    >
                     <colgroup>
                         <col style="width: 132px;">
                         <col style="width: 108px;">
@@ -207,27 +208,27 @@
                     </colgroup>
                     <thead>
                         <tr>
-                            <th class="schedulix-sticky schedulix-sticky-header-divider px-4 py-4" style="--schedulix-left: 0px;">{{ __('ui.common.platform') }}</th>
-                            <th class="schedulix-sticky schedulix-sticky-header-divider px-4 py-4" style="--schedulix-left: 132px;">{{ __('ui.wbs.wbs_no') }}</th>
-                            <th class="schedulix-sticky schedulix-sticky-header-divider px-5 py-4" style="--schedulix-left: 240px;">{{ __('ui.schedule.task_name') }}</th>
-                            <th class="schedulix-sticky schedulix-sticky-header-divider px-4 py-4" style="--schedulix-left: 540px;">{{ __('ui.schedule.content_item_type') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.common.category') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.plan_rest_hours') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.variance_hours') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.planned_hours') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.digestion_hours') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.actual_hours') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.planned_start') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.actual_start') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.planned_end') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.actual_end') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.remaining_hours') }}</th>
-                            <th class="px-4 py-4">{{ __('ui.schedule.progress_percent') }}</th>
+                            <th class="schedulix-sticky schedulix-sticky-header-divider px-4 py-3.5" style="--schedulix-left: 0px;">{{ __('ui.common.platform') }}</th>
+                            <th class="schedulix-sticky schedulix-sticky-header-divider px-4 py-3.5" style="--schedulix-left: 132px;">{{ __('ui.wbs.wbs_no') }}</th>
+                            <th class="schedulix-sticky schedulix-sticky-header-divider px-5 py-3.5" style="--schedulix-left: 240px;">{{ __('ui.schedule.task_name') }}</th>
+                            <th class="schedulix-sticky schedulix-sticky-header-divider px-4 py-3.5" style="--schedulix-left: 540px;">{{ __('ui.schedule.content_item_type') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.common.category') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.plan_rest_hours') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.variance_hours') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.planned_hours') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.digestion_hours') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.actual_hours') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.planned_start') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.actual_start') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.planned_end') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.actual_end') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.remaining_hours') }}</th>
+                            <th class="px-4 py-3.5">{{ __('ui.schedule.progress_percent') }}</th>
                             @foreach ($grid['dates'] as $date)
                                 @php($dateKey = $date->toDateString())
                                 @php($isToday = $dateKey === $grid['todayPanel']['today'])
                                 @php($isHoliday = $grid['holidayDates']->contains($dateKey) || $date->isWeekend())
-                                <th class="schedulix-date-header {{ $isToday ? 'schedulix-today' : '' }} {{ $isHoliday ? 'schedulix-holiday-column' : '' }} px-2 py-4">
+                                <th class="schedulix-date-header {{ $isToday ? 'schedulix-today' : '' }} {{ $isHoliday ? 'schedulix-holiday-column' : '' }} px-2 py-3.5">
                                     <span class="block text-[11px] uppercase tracking-[0.15em]">{{ $date->format('M') }}</span>
                                     <span class="mt-1 block font-semibold">{{ $date->format('m-d') }}</span>
                                     <span class="mt-1 block text-[11px] lowercase">{{ $date->format('D') }}</span>
@@ -242,15 +243,15 @@
                             @php($rowIsComplete = $row['is_complete'])
                             @php($hasWarning = $row['has_missing_actuals'] || $row['has_short_actuals'])
                             <tr class="text-slate-200 {{ $rowIsComplete ? 'schedulix-row-complete' : '' }}">
-                                <td rowspan="2" class="schedulix-sticky schedulix-sticky-cell-divider px-4 py-5 align-top" style="--schedulix-left: 0px;">{{ $assignment->wbsItem?->platform ? __("ui.platforms.".$assignment->wbsItem->platform) : '-' }}</td>
-                                <td rowspan="2" class="schedulix-sticky schedulix-sticky-cell-divider px-4 py-5 align-top font-semibold text-white" style="--schedulix-left: 132px;">{{ $assignment->wbsItem?->wbs_number }}</td>
-                                <td rowspan="2" class="schedulix-sticky schedulix-sticky-cell-divider px-5 py-5 align-top" style="--schedulix-left: 240px;">
+                                <td rowspan="2" class="schedulix-sticky schedulix-sticky-cell-divider px-4 py-4 align-top" style="--schedulix-left: 0px;">{{ $assignment->wbsItem?->platform ? __("ui.platforms.".$assignment->wbsItem->platform) : '-' }}</td>
+                                <td rowspan="2" class="schedulix-sticky schedulix-sticky-cell-divider px-4 py-4 align-top font-semibold text-white" style="--schedulix-left: 132px;">{{ $assignment->wbsItem?->wbs_number }}</td>
+                                <td rowspan="2" class="schedulix-sticky schedulix-sticky-cell-divider px-5 py-4 align-top" style="--schedulix-left: 240px;">
                                     <p class="font-semibold text-white">{{ $assignment->wbsItem?->item_name }}</p>
                                     <p class="mt-1 text-xs uppercase tracking-[0.2em] text-slate-400">{{ $assignment->pic?->name }}</p>
                                 </td>
-                                <td class="schedulix-sticky schedulix-sticky-cell-divider px-4 py-5" style="--schedulix-left: 540px;">{{ $assignment->wbsItem?->content_item_type ? __("ui.content_item_types.".$assignment->wbsItem->content_item_type) : '-' }}</td>
-                                <td class="px-4 py-5 font-semibold text-slate-400 schedulix-plan-label">{{ __('ui.common.planned') }}</td>
-                                <td class="px-4 py-5">
+                                <td class="schedulix-sticky schedulix-sticky-cell-divider px-4 py-4" style="--schedulix-left: 540px;">{{ $assignment->wbsItem?->content_item_type ? __("ui.content_item_types.".$assignment->wbsItem->content_item_type) : '-' }}</td>
+                                <td class="px-4 py-4 font-semibold text-slate-400 schedulix-plan-label">{{ __('ui.common.planned') }}</td>
+                                <td class="px-4 py-4">
                                     <input
                                         type="number"
                                         step="0.01"
@@ -262,44 +263,44 @@
                                     />
                                     <x-field-error :for="'plan_rest_hours.'.$assignment->id" class="mt-2" />
                                 </td>
-                                <td class="px-4 py-5">{{ number_format((float) $row['variance_hours'], 2) }}</td>
-                                <td class="px-4 py-5 {{ $hasWarning ? 'schedulix-warning-text' : '' }}">{{ number_format((float) $row['planned_hours'], 2) }}</td>
-                                <td class="px-4 py-5">{{ number_format((float) $row['digestion_hours'], 2) }}</td>
-                                <td class="px-4 py-5">{{ number_format((float) $row['actual_total_hours'], 2) }}</td>
-                                <td class="px-4 py-5 {{ $hasWarning ? 'schedulix-warning-text' : '' }}">{{ $schedule?->planned_start_date?->format('Y-m-d') ?: '-' }}</td>
-                                <td class="px-4 py-5">
+                                <td class="px-4 py-4">{{ number_format((float) $row['variance_hours'], 2) }}</td>
+                                <td class="px-4 py-4 {{ $hasWarning ? 'schedulix-warning-text' : '' }}">{{ number_format((float) $row['planned_hours'], 2) }}</td>
+                                <td class="px-4 py-4">{{ number_format((float) $row['digestion_hours'], 2) }}</td>
+                                <td class="px-4 py-4">{{ number_format((float) $row['actual_total_hours'], 2) }}</td>
+                                <td class="px-4 py-4 {{ $hasWarning ? 'schedulix-warning-text' : '' }}">{{ $schedule?->planned_start_date?->format('Y-m-d') ?: '-' }}</td>
+                                <td class="px-4 py-4">
                                     <input type="date" name="actual_start_dates[{{ $assignment->id }}]" value="{{ old("actual_start_dates.{$assignment->id}", optional($schedule?->actual_start_date)->format('Y-m-d')) }}" class="schedulix-date-input rounded-2xl px-3 py-2 text-white" />
                                     <x-field-error :for="'actual_start_dates.'.$assignment->id" class="mt-2" />
                                 </td>
-                                <td class="px-4 py-5 {{ $hasWarning ? 'schedulix-warning-text' : '' }}">{{ $schedule?->planned_end_date?->format('Y-m-d') ?: '-' }}</td>
-                                <td class="px-4 py-5">
+                                <td class="px-4 py-4 {{ $hasWarning ? 'schedulix-warning-text' : '' }}">{{ $schedule?->planned_end_date?->format('Y-m-d') ?: '-' }}</td>
+                                <td class="px-4 py-4">
                                     <input type="date" name="actual_end_dates[{{ $assignment->id }}]" value="{{ old("actual_end_dates.{$assignment->id}", optional($schedule?->actual_end_date)->format('Y-m-d')) }}" class="schedulix-date-input rounded-2xl px-3 py-2 text-white" />
                                     <x-field-error :for="'actual_end_dates.'.$assignment->id" class="mt-2" />
                                 </td>
-                                <td class="px-4 py-5">{{ $row['remaining_hours'] === null ? '-' : number_format((float) $row['remaining_hours'], 2) }}</td>
-                                <td class="px-4 py-5 {{ ($row['progress_percent'] ?? 0) > 100 ? 'schedulix-warning-text' : '' }}">{{ $row['progress_percent'] === null ? '-' : number_format((float) $row['progress_percent'], 2) }}</td>
+                                <td class="px-4 py-4">{{ $row['remaining_hours'] === null ? '-' : number_format((float) $row['remaining_hours'], 2) }}</td>
+                                <td class="px-4 py-4 {{ ($row['progress_percent'] ?? 0) > 100 ? 'schedulix-warning-text' : '' }}">{{ $row['progress_percent'] === null ? '-' : number_format((float) $row['progress_percent'], 2) }}</td>
                                 @foreach ($grid['dates'] as $date)
                                     @php($dateKey = $date->toDateString())
                                     @php($meta = $row['date_meta'][$dateKey])
-                                    <td class="schedulix-date-cell px-2 py-5 {{ $meta['is_today'] ? 'schedulix-today' : '' }} {{ $meta['is_holiday'] || $date->isWeekend() ? 'schedulix-holiday-column' : '' }} {{ $meta['planned_has_value'] && ! $meta['is_holiday'] ? 'schedulix-planned-cell' : '' }}">
+                                    <td class="schedulix-date-cell px-2 py-4 {{ $meta['is_today'] ? 'schedulix-today' : '' }} {{ $meta['is_holiday'] || $date->isWeekend() ? 'schedulix-holiday-column' : '' }} {{ $meta['planned_has_value'] && ! $meta['is_holiday'] ? 'schedulix-planned-cell' : '' }}">
                                         {{ $meta['planned_has_value'] ? number_format((float) $row['planned_map'][$dateKey], 2) : '-' }}
                                     </td>
                                 @endforeach
                             </tr>
                             <tr class="schedulix-row-alt text-slate-200 {{ $rowIsComplete ? 'schedulix-row-complete' : '' }}">
-                                <td class="schedulix-sticky schedulix-sticky-cell-divider px-4 py-5" style="--schedulix-left: 540px;">{{ $assignment->wbsItem?->content_item_type ? __("ui.content_item_types.".$assignment->wbsItem->content_item_type) : '-' }}</td>
-                                <td class="px-4 py-5 font-semibold text-slate-400 schedulix-actual-label">{{ __('ui.common.actual') }}</td>
-                                <td class="px-4 py-5">{{ $row['plan_rest_hours'] === null ? '-' : number_format((float) $row['plan_rest_hours'], 2) }}</td>
-                                <td class="px-4 py-5">{{ number_format((float) $row['variance_hours'], 2) }}</td>
-                                <td class="px-4 py-5 {{ $hasWarning ? 'schedulix-warning-text' : '' }}">{{ number_format((float) $row['planned_hours'], 2) }}</td>
-                                <td class="px-4 py-5">{{ number_format((float) $row['digestion_hours'], 2) }}</td>
-                                <td class="px-4 py-5">{{ number_format((float) $row['actual_total_hours'], 2) }}</td>
-                                <td class="px-4 py-5">{{ $schedule?->planned_start_date?->format('Y-m-d') ?: '-' }}</td>
-                                <td class="px-4 py-5">{{ $schedule?->actual_start_date?->format('Y-m-d') ?: ($row['first_actual_date'] ?: '-') }}</td>
-                                <td class="px-4 py-5">{{ $schedule?->planned_end_date?->format('Y-m-d') ?: '-' }}</td>
-                                <td class="px-4 py-5">{{ $schedule?->actual_end_date?->format('Y-m-d') ?: ($row['last_actual_date'] ?: '-') }}</td>
-                                <td class="px-4 py-5">{{ $row['remaining_hours'] === null ? '-' : number_format((float) $row['remaining_hours'], 2) }}</td>
-                                <td class="px-4 py-5 {{ ($row['progress_percent'] ?? 0) > 100 ? 'schedulix-warning-text' : '' }}">{{ $row['progress_percent'] === null ? '-' : number_format((float) $row['progress_percent'], 2) }}</td>
+                                <td class="schedulix-sticky schedulix-sticky-cell-divider px-4 py-4" style="--schedulix-left: 540px;">{{ $assignment->wbsItem?->content_item_type ? __("ui.content_item_types.".$assignment->wbsItem->content_item_type) : '-' }}</td>
+                                <td class="px-4 py-4 font-semibold text-slate-400 schedulix-actual-label">{{ __('ui.common.actual') }}</td>
+                                <td class="px-4 py-4">{{ $row['plan_rest_hours'] === null ? '-' : number_format((float) $row['plan_rest_hours'], 2) }}</td>
+                                <td class="px-4 py-4">{{ number_format((float) $row['variance_hours'], 2) }}</td>
+                                <td class="px-4 py-4 {{ $hasWarning ? 'schedulix-warning-text' : '' }}">{{ number_format((float) $row['planned_hours'], 2) }}</td>
+                                <td class="px-4 py-4">{{ number_format((float) $row['digestion_hours'], 2) }}</td>
+                                <td class="px-4 py-4">{{ number_format((float) $row['actual_total_hours'], 2) }}</td>
+                                <td class="px-4 py-4">{{ $schedule?->planned_start_date?->format('Y-m-d') ?: '-' }}</td>
+                                <td class="px-4 py-4">{{ $schedule?->actual_start_date?->format('Y-m-d') ?: ($row['first_actual_date'] ?: '-') }}</td>
+                                <td class="px-4 py-4">{{ $schedule?->planned_end_date?->format('Y-m-d') ?: '-' }}</td>
+                                <td class="px-4 py-4">{{ $schedule?->actual_end_date?->format('Y-m-d') ?: ($row['last_actual_date'] ?: '-') }}</td>
+                                <td class="px-4 py-4">{{ $row['remaining_hours'] === null ? '-' : number_format((float) $row['remaining_hours'], 2) }}</td>
+                                <td class="px-4 py-4 {{ ($row['progress_percent'] ?? 0) > 100 ? 'schedulix-warning-text' : '' }}">{{ $row['progress_percent'] === null ? '-' : number_format((float) $row['progress_percent'], 2) }}</td>
                                 @foreach ($grid['dates'] as $date)
                                     @php($dateKey = $date->toDateString())
                                     @php($meta = $row['date_meta'][$dateKey])
@@ -319,22 +320,23 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="{{ 16 + $grid['dates']->count() }}" class="px-4 py-8 text-center text-slate-400">{{ __('ui.schedule.no_assignments') }}</td>
+                                <td colspan="{{ 16 + $grid['dates']->count() }}" class="px-4 py-10 text-center text-sm text-slate-400">{{ __('ui.schedule.no_assignments') }}</td>
                             </tr>
                         @endforelse
                     </tbody>
-                </table>
-            </div>
-            <div
-                x-ref="bottomScroll"
-                @scroll="syncFromBottom"
-                class="schedulix-table-scrollbar block w-full max-w-full overflow-x-scroll rounded-b-[2rem] border border-white/10 border-t-0"
-            >
+                    </table>
+                </div>
                 <div
-                    :style="spacerWidth ? `width: ${spacerWidth}px` : ''"
-                    style="width: {{ $detailTableWidth }}px;"
-                    class="h-4"
-                ></div>
+                    x-ref="bottomScroll"
+                    @scroll="syncFromBottom"
+                    class="schedulix-table-scrollbar block w-full max-w-full overflow-x-scroll border-t border-white/10"
+                >
+                    <div
+                        :style="spacerWidth ? `width: ${spacerWidth}px` : ''"
+                        style="width: {{ $detailTableWidth }}px;"
+                        class="h-4"
+                    ></div>
+                </div>
             </div>
         </form>
     </div>

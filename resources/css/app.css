@@ -135,7 +135,7 @@
         display: block;
         width: 100%;
         max-width: 100%;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(237, 249, 240, 0.98));
+        background: transparent;
         scrollbar-gutter: stable;
         overflow-y: hidden;
     }
@@ -144,8 +144,8 @@
         display: block;
         width: 100%;
         max-width: 100%;
-        background: rgba(255, 255, 255, 0.92);
-        padding: 0.45rem 0;
+        background: rgba(255, 255, 255, 0.72);
+        padding: 0.4rem 0;
         scrollbar-gutter: stable;
         overflow-y: hidden;
     }
@@ -172,28 +172,30 @@
         border-collapse: separate;
         border-spacing: 0;
         table-layout: fixed;
+        background: transparent;
     }
 
     .schedulix-detail-table thead th {
-        background: #effcf2;
+        background: rgba(255, 255, 255, 0.88);
         color: var(--schedulix-ink);
         font-weight: 700;
         white-space: nowrap;
+        vertical-align: middle;
     }
 
     .schedulix-detail-table td,
     .schedulix-detail-table th {
-        border-bottom: 1px solid rgba(99, 182, 124, 0.2);
+        border-bottom: 1px solid var(--schedulix-border);
     }
 
     .schedulix-detail-table tbody td {
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.78);
         color: var(--schedulix-ink);
         vertical-align: middle;
     }
 
     .schedulix-detail-table .schedulix-row-alt td {
-        background: rgba(213, 240, 220, 0.34);
+        background: rgba(213, 240, 220, 0.18);
     }
 
     .schedulix-row-complete td {
@@ -205,19 +207,19 @@
         position: sticky;
         left: var(--schedulix-left);
         z-index: 12;
-        background: #f7fef9 !important;
+        background: rgba(255, 255, 255, 0.88) !important;
         box-shadow:
-            1px 0 0 rgba(99, 182, 124, 0.18),
-            16px 0 20px -20px rgba(39, 92, 57, 0.3);
+            1px 0 0 rgba(99, 182, 124, 0.12),
+            12px 0 16px -20px rgba(39, 92, 57, 0.22);
     }
 
     .schedulix-detail-table thead .schedulix-sticky {
         z-index: 24;
-        background: #effcf2 !important;
+        background: rgba(255, 255, 255, 0.9) !important;
     }
 
     .schedulix-detail-table .schedulix-row-alt .schedulix-sticky {
-        background: #edf9f0 !important;
+        background: rgba(237, 249, 240, 0.9) !important;
     }
 
     .schedulix-sticky-header-divider::after,
@@ -238,6 +240,10 @@
         text-align: center;
     }
 
+    .schedulix-date-cell {
+        font-variant-numeric: tabular-nums;
+    }
+
     .schedulix-holiday-column {
         background: #d9d9d9 !important;
         color: #4b5563 !important;
@@ -252,11 +258,11 @@
     }
 
     .schedulix-plan-label {
-        background: rgba(255, 242, 168, 0.55) !important;
+        background: rgba(255, 242, 168, 0.42) !important;
     }
 
     .schedulix-actual-label {
-        background: rgba(201, 240, 201, 0.55) !important;
+        background: rgba(201, 240, 201, 0.42) !important;
     }
 
     .schedulix-warning-text {
