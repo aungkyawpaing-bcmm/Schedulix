@@ -174,7 +174,7 @@
 
             <div class="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
                 <div
-                    class="schedulix-table-wrap block h-[62vh] w-full max-w-full overflow-x-scroll overflow-y-auto"
+                    class="schedulix-table-wrap block h-[72vh] min-h-[32rem] w-full max-w-full overflow-x-scroll overflow-y-auto"
                 >
                     <table
                         class="schedulix-detail-table text-sm"
