@@ -1,5 +1,5 @@
 @php
-    $detailTableBaseWidth = 2172;
+    $detailTableBaseWidth = 2244;
     $detailTableWidth = $detailTableBaseWidth + ($grid['dates']->count() * 76);
 @endphp
 
@@ -155,8 +155,6 @@
             method="POST"
             action="{{ route('schedule.progress.store', $project) }}"
             class="schedulix-panel min-w-0 rounded-3xl p-6"
-            x-data="scheduleTableScroller()"
-            x-init="init()"
         >
             @csrf
 
@@ -176,12 +174,9 @@
 
             <div class="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
                 <div
-                    x-ref="mainScroll"
-                    @scroll="syncFromMain"
                     class="schedulix-table-wrap block h-[62vh] w-full max-w-full overflow-x-scroll overflow-y-auto"
                 >
                     <table
-                        x-ref="detailTable"
                         class="schedulix-detail-table text-sm"
                         style="width: {{ $detailTableWidth }}px; min-width: {{ $detailTableWidth }}px;"
                     >
@@ -196,12 +191,12 @@
                         <col style="width: 112px;">
                         <col style="width: 112px;">
                         <col style="width: 128px;">
-                        <col style="width: 128px;">
-                        <col style="width: 156px;">
-                        <col style="width: 128px;">
-                        <col style="width: 156px;">
-                        <col style="width: 112px;">
-                        <col style="width: 112px;">
+                        <col style="width: 136px;">
+                        <col style="width: 184px;">
+                        <col style="width: 136px;">
+                        <col style="width: 184px;">
+                        <col style="width: 120px;">
+                        <col style="width: 120px;">
                         @foreach ($grid['dates'] as $date)
                             <col style="width: 76px;">
                         @endforeach
@@ -325,17 +320,6 @@
                         @endforelse
                     </tbody>
                     </table>
-                </div>
-                <div
-                    x-ref="bottomScroll"
-                    @scroll="syncFromBottom"
-                    class="schedulix-table-scrollbar block w-full max-w-full overflow-x-scroll border-t border-white/10"
-                >
-                    <div
-                        :style="spacerWidth ? `width: ${spacerWidth}px` : ''"
-                        style="width: {{ $detailTableWidth }}px;"
-                        class="h-4"
-                    ></div>
                 </div>
             </div>
         </form>

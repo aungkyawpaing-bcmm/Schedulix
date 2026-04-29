@@ -140,28 +140,15 @@
         overflow-y: hidden;
     }
 
-    .schedulix-table-scrollbar {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        background: rgba(255, 255, 255, 0.72);
-        padding: 0.4rem 0;
-        scrollbar-gutter: stable;
-        overflow-y: hidden;
-    }
-
-    .schedulix-table-scrollbar::-webkit-scrollbar,
     .schedulix-table-wrap::-webkit-scrollbar {
         height: 12px;
     }
 
-    .schedulix-table-scrollbar::-webkit-scrollbar-track,
     .schedulix-table-wrap::-webkit-scrollbar-track {
         background: rgba(213, 240, 220, 0.72);
         border-radius: 9999px;
     }
 
-    .schedulix-table-scrollbar::-webkit-scrollbar-thumb,
     .schedulix-table-wrap::-webkit-scrollbar-thumb {
         background: rgba(99, 217, 134, 0.9);
         border-radius: 9999px;
@@ -176,6 +163,9 @@
     }
 
     .schedulix-detail-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 18;
         background: rgba(255, 255, 255, 0.88);
         color: var(--schedulix-ink);
         font-weight: 700;
@@ -214,7 +204,7 @@
     }
 
     .schedulix-detail-table thead .schedulix-sticky {
-        z-index: 24;
+        z-index: 28;
         background: rgba(255, 255, 255, 0.9) !important;
     }
 
@@ -286,7 +276,9 @@
     }
 
     .schedulix-date-input {
-        min-width: 144px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
     }
 
     .schedulix-guest-shell {
